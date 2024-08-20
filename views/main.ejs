@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="main">TODOLIST</h1>
+      <form id="task-form" action="/add_list" method="post">
+        <p>
+          <input
+            id="inputbox"
+            name="content"
+            type="text"
+            placeholder="할일을 입력해주세요"
+          />
+          <input type="submit" id="plusbtn" value="" />
+        </p>
+        <ul id="list-container">
+          <% lists.forEach(function(let) { %>
+          <li>
+            <input type="checkbox" id="checkbox" />
+            <span id="linethrough"><%= let %></span>
+            <button
+              class="deletebtn"
+              type="button"
+              onclick="location.href='/delete/<%= encodeURIComponent(let) %>'"
+            ></button>
+            <button
+              class="updatebtn"
+              type="button"
+              onclick="location.href='/open_update/<%= encodeURIComponent(let) %>'"
+            ></button>
+          </li>
+          <% }); %>
+        </ul>
+      </form>
+      <button type="button" id="allDeletebtn">전체삭제</button>
+    </div>
+    <script>
+      // 아무것도 클릭하지 않았을때
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("task-form");
+        const inputBox = document.getElementById("inputbox");
+
+        form.addEventListener("submit", (event) => {
+          if (inputBox.value.trim() === "") {
+            event.preventDefault();
+            alert("할일을 입력해 주세요!");
+          }
+        });
+      });
+
+      //전체삭제
+      allDeletebtn.addEventListener("click", () => {
+        location.href = "/all_delete";
+      });
+
+      //체크되었을때 텍스트 줄긋기
+      document
+        .getElementById("list-container")
+        .addEventListener("change", function (e) {
+          if (e.target.tagName === "INPUT" && e.target.type === "checkbox") {
+            // Get the next sibling element of the checkbox
+            var spanElement = e.target.nextElementSibling;
+
+            // Check the checkbox state and add or remove class accordingly
+            if (e.target.checked) {
+              spanElement.classList.add("change"); // Add class if checked
+            } else {
+              spanElement.classList.remove("change"); // Remove class if unchecked
+            }
+          }
+        });
+    </script>
+  </body>
+</html>

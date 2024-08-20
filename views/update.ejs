@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles/update.css" />
+  </head>
+  <body>
+    <div class="container">
+      <button class="back" onclick="location.href='/'">x</button>
+      <h1>수정하기</h1>
+      <form action="/update" method="post" id="task-form">
+        <input
+          id="inputbox"
+          type="text"
+          name="newContent"
+          placeholder="수정할 사항을 적어주세요."
+        />
+        <input type="hidden" name="prevContent" value="<%= prevContent %>" />
+        <input class="updatebtn" type="submit" value="완료" />
+      </form>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("task-form");
+        const inputBox = document.getElementById("inputbox");
+
+        form.addEventListener("submit", (event) => {
+          if (inputBox.value.trim() === "") {
+            event.preventDefault();
+            alert("수정내역을 입력해 주세요!");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
