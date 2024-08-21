@@ -20,8 +20,9 @@
 
 
 
-
+<h1>4. 화면</h1>
 
 
 ![image](https://github.com/user-attachments/assets/c8ce7088-68eb-47cf-8111-760b261b0a83)
 ![image](https://github.com/user-attachments/assets/9d724ee5-876f-4b18-a2e5-4b7c09bbb592)
+![image](https://github.com/user-attachments/assets/364bb18c-96c1-454d-bac8-2c36575a4aa7)
